@@ -1,4 +1,4 @@
-# hooks-toolbox
+# react-hooks-toolbox
 
 Collection of Hooks.
 
@@ -9,13 +9,13 @@ Collection of Hooks.
 ### With npm
 
 ```sh
-npm i hooks-toolbox
+npm i react-hooks-toolbox
 ```
 
 ### Or with yarn
 
 ```sh
-yarn add hooks-toolbox
+yarn add react-hooks-toolbox
 ```
 
 ## API
@@ -102,7 +102,7 @@ Array containing:
 #### Example
 
 ```js
-import { useDymoOpenLabel, useDymoCheckService } from "hooks-toolbox";
+import { useDymoOpenLabel, useDymoCheckService } from "react-hooks-toolbox";
 
 const DymoLabelPreview = () => {
   const [msg, statusDymoService] = useDymoCheckService();

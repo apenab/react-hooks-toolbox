@@ -1,7 +1,7 @@
 {
-  "name": "hooks-toolbox",
+  "name": "react-hooks-toolbox",
   "version": "0.0.3",
-  "description": "hooks-toolbox React component",
+  "description": "React hooks toolbox",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -44,7 +44,7 @@
   },
   "author": "apenab",
   "license": "MIT",
-  "repository": "https://github.com/apenab/hooks-toolbox",
+  "repository": "https://github.com/apenab/react-hooks-toolbox",
   "keywords": [
     "react-component",
     "react",
