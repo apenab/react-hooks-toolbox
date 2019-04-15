@@ -1,0 +1,43 @@
+{
+  "extends": ["react-app", "plugin:jsx-a11y/recommended"],
+  "parser": "babel-eslint",
+  "plugins": ["react", "import", "react-hooks", "jsx-a11y"],
+  "rules": {
+    "arrow-body-style": ["error", "as-needed"],
+    "arrow-spacing": ["error"],
+    "brace-style": ["error", "stroustrup"],
+    "curly": ["error", "all"],
+    "import/newline-after-import": ["error", { "count": 2 }],
+    "indent": ["error", 4],
+    "keyword-spacing": ["error", { "after": true }],
+    "max-len": ["warn", { "code": 120 }],
+    "object-curly-spacing": ["error", "never"],
+    "quotes": ["error", "double"],
+    "react/jsx-closing-bracket-location": ["error", "after-props"],
+    "react/jsx-first-prop-new-line": ["error", "multiline"],
+    "react/jsx-key": ["error"],
+    "react/jsx-max-props-per-line": [
+      "error",
+      { "maximum": 1, "when": "multiline" }
+    ],
+    "react/jsx-tag-spacing": [
+      "error",
+      { "beforeSelfClosing": "never", "beforeClosing": "never" }
+    ],
+    "react/jsx-wrap-multilines": [
+      "error",
+      {
+        "declaration": "parens-new-line",
+        "assignment": "parens-new-line",
+        "return": "parens-new-line",
+        "arrow": "parens-new-line",
+        "condition": "parens-new-line",
+        "logical": "parens-new-line",
+        "prop": "parens-new-line"
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "semi": ["error", "always"]
+  }
+}
