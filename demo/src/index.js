@@ -1,53 +1,38 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {render} from "react-dom";
-import {useGoogleApiInit} from "../../src";
+
+import GoogleAPIExample from "./components/GoogleAPIExample";
+import DymoAPIExample from "./components/DymoAPIExample";
 
 
-const config = require("../../api_google.config.json");
-
-
-function GoogleAPITest() {
-    const gapiObject = useGoogleApiInit(config);
-    const {gapiStatus, signed} = gapiObject;
-    useEffect(() => {
-        console.log(gapiObject);
-    });
-    function handleSignIn() {
-        window["gapi"].auth2.getAuthInstance().signIn();
+class Demo extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            show: ""
+        };
     }
-    function handleSignOut() {
-        window["gapi"].auth2.getAuthInstance().signOut();
-    }
-    if (gapiStatus === "loading") {
-        return <h1>Loading...</h1>;
-    }
-    else if (gapiStatus === "success") {
+
+    render() {
         return (
             <div>
-                <h1 style={{color: "blue"}}>Google API is ready!!</h1>
-                <br/>
-                {signed ? (
-                    <button onClick={() => handleSignOut()}>Sign out</button>
-                ) : (
-                    <button onClick={() => handleSignIn()}>Sign in</button>
-                )}
+                <div style={{display: "inline-table", width: "30%"}}>
+                    <button onClick={() => this.setState({show: "google_example"})}>
+                        Mount Google API component example
+                    </button>
+                    <br/>
+                    {this.state.show === "google_example" && <GoogleAPIExample/>}
+                </div>
+                <div style={{display: "inline-table", width: "30%"}}>
+                    <button onClick={() => this.setState({show: "dymo_example"})}>
+                        Mount DYMO API component example
+                    </button>
+                    <br/>
+                    {this.state.show === "dymo_example" && <DymoAPIExample/>}
+                </div>
             </div>
         );
     }
-    else {
-        return <h1 style={{color: "red"}}>Error!!</h1>;
-    }
-}
-
-function Demo() {
-    const [show, setShow] = useState("");
-
-    return (
-        <div>
-            {show === "google_api" && <GoogleAPITest/>}
-            <button onClick={() => setShow("google_api")}>Mount Google API component</button>
-        </div>
-    );
 }
 
 render(<Demo/>, document.querySelector("#demo"));
