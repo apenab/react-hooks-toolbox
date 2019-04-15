@@ -40,11 +40,18 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
-  "author": "",
-  "homepage": "",
+  "author": "apenab",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/apenab/hooks-toolbox",
   "keywords": [
-    "react-component"
+    "react-component",
+    "react",
+    "react-hooks",
+    "hooks",
+    "react-google-api",
+    "hooks-api-react",
+    "javascript",
+    "google-react",
+    "google-api"
   ]
 }
