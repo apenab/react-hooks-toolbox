@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {render} from "react-dom";
-
-import {useGoogleApiInit} from "../../src/index";
+import {useGoogleApiInit} from "../../src";
 
 
 const config = require("../../api_google.config.json");
@@ -9,6 +8,7 @@ const config = require("../../api_google.config.json");
 
 function GoogleAPITest() {
     const gapiObject = useGoogleApiInit(config);
+    const {gapiStatus, signed} = gapiObject;
     useEffect(() => {
         console.log(gapiObject);
     });
@@ -18,13 +18,25 @@ function GoogleAPITest() {
     function handleSignOut() {
         window["gapi"].auth2.getAuthInstance().signOut();
     }
-    return (
-        <div>
-            <h1>Mounted Google API Object</h1>
-            <button onClick={() => handleSignIn()}>Sign in</button>
-            <button onClick={() => handleSignOut()}>Sign out</button>
-        </div>
-    );
+    if (gapiStatus === "loading") {
+        return <h1>Loading...</h1>;
+    }
+    else if (gapiStatus === "success") {
+        return (
+            <div>
+                <h1 style={{color: "blue"}}>Google API is ready!!</h1>
+                <br/>
+                {signed ? (
+                    <button onClick={() => handleSignOut()}>Sign out</button>
+                ) : (
+                    <button onClick={() => handleSignIn()}>Sign in</button>
+                )}
+            </div>
+        );
+    }
+    else {
+        return <h1 style={{color: "red"}}>Error!!</h1>;
+    }
 }
 
 function Demo() {
@@ -33,7 +45,7 @@ function Demo() {
     return (
         <div>
             {show === "google_api" && <GoogleAPITest/>}
-            <button onClick={() => setShow("google_api")}>Mount Google API test component</button>
+            <button onClick={() => setShow("google_api")}>Mount Google API component</button>
         </div>
     );
 }
