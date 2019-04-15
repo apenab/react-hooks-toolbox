@@ -6,11 +6,9 @@ import {getDymoUrl, dymoAxios} from "../utils/dymo";
 export function useDymoOpenLabel(statusDymoService, labelXML, port = 41951) {
     const [status, setStatus] = useState("init");
     const [label, setLabel] = useState(null);
-    const [xml, setXml] = useState(null);
     useEffect(() => {
         if (statusDymoService === "success") {
             setStatus("loading");
-            setXml(labelXML);
             dymoAxios
                 .post(
                     getDymoUrl("RenderLabel", port),
@@ -26,5 +24,5 @@ export function useDymoOpenLabel(statusDymoService, labelXML, port = 41951) {
         }
     }, [labelXML, port, statusDymoService]);
 
-    return [label, xml, status];
+    return [label, status];
 }

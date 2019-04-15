@@ -2,7 +2,6 @@
 
 Collection of Hooks.
 
-
 ## Install
 
 > Note: React 16.8+ is required for Hooks.
@@ -22,9 +21,16 @@ yarn add hooks-toolbox
 ## API
 
 - [Hooks](#hooks)
-  - [`useGoogleApiInit()`](#usegoogleapiinit)
+  - [Google-API](#google-api)
+    - [`useGoogleApiInit()`](#usegoogleapiinit)
+  - [DYMO-API](#dymo-api)
+    - [`useDymoCheckService()`](#usedymocheckservice)
+    - [`useDymoFetchPrinters()`](#usedymofetchprinters)
+    - [`useDymoOpenLabel()`](#usedymoopenlabel)
 
 ## Hooks
+
+## Google-API
 
 ### `useGoogleApiInit()`
 
@@ -43,11 +49,71 @@ Object containing:
 - `signed: boolean`: `false` Sign status.
 - `userProfile: object`: `null` User's basic profile information and token.
 
+## DYMO-API
 
+### `useDymoCheckService()`
 
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
+Return the status of DYMO Label Web Service
+
+#### Arguments
+
+`port: number`: The port of running DYMO Label Web Service.
+
+#### Returns
+
+Array containing:
+
+- `message: string`: `""` The errors thrown.
+- `status: string`: `"init"`: `"init" | "loading" | "success" | "error"` Status of DYMO Label Web Service.
+
+### `useDymoFetchPrinters()`
+
+Returns the available DYMO Labelwriter Printer
+
+#### Arguments
+
+`port: number`: The port of running DYMO Label Web Service.
+`statusDymoService: string`: The status of DYMO Label Web Service.
+
+#### Returns
+
+Array containing:
+
+- `printers: array`: `[]` The list of available DYMO Labelwriter Printer.
+- `status: string`: `"init"`: `"init" | "loading" | "success" | "error"` Status of loading printers.
+
+### `useDymoOpenLabel()`
+
+Render Label
+
+#### Arguments
+
+`labelXML: xml file`: XML file.
+`statusDymoService: string`: The status of DYMO Label Web Service.
+`port: number`: The port of running DYMO Label Web Service.
+
+#### Returns
+
+Array containing:
+
+- `label`:
+- `status: string`: `"init"`: `"init" | "loading" | "success" | "error"` Status of render label.
+
+#### Example
+
+```js
+import { useDymoOpenLabel, useDymoCheckService } from "hooks-toolbox";
+
+const DymoLabelPreview = () => {
+  const [msg, statusDymoService] = useDymoCheckService();
+  const [label, status] = useDymoOpenLabel(statusDymoService, xmlFile);
+
+  if (label) {
+    return (
+      <img src={"data:image/png;base64," + label} alt="dymo label preview" />
+    );
+  } else {
+    return null;
+  }
+};
+```
