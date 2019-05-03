@@ -1,26 +1,22 @@
 import {useState, useEffect} from "react";
 
 import {getDymoUrl, dymoAxios, getDymoPrintersFromXml} from "../utils/dymo";
+import {useAxiosGet} from "../useAxiosGet";
 
 
-export function useDymoFetchPrinters(statusDymoService, port = 41951) {
+export function useDymoFetchPrinters(statusDymoService, modelPrinter = "LabelWriterPrinter", port = 41951) {
     const [printers, setPrinters] = useState([]);
-    const [status, setStatus] = useState("init");
-    useEffect(() => {
-        if (statusDymoService === "success") {
-            setStatus("loading");
-            dymoAxios
-                .get(getDymoUrl("GetPrinters", port))
-                .then(response => {
-                    const data = response.data;
-                    setPrinters(getDymoPrintersFromXml(data));
-                    setStatus("success");
-                })
-                .catch(() => {
-                    setStatus("error");
-                });
-        }
-    }, [port, statusDymoService]);
+    const {status, response} = useAxiosGet({
+        url: getDymoUrl("GetPrinters", port),
+        axiosInstance: dymoAxios,
+        onlyDispatchIf: statusDymoService === "success"
+    });
 
-    return [printers, status];
+    useEffect(() => {
+        if (response) {
+            setPrinters(getDymoPrintersFromXml(response, modelPrinter));
+        }
+    }, [modelPrinter, response]);
+
+    return {statusDymoFetchPrinters: status, printers: printers};
 }

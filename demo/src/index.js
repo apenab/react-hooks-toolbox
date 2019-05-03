@@ -3,6 +3,7 @@ import {render} from "react-dom";
 
 import GoogleAPIExample from "./components/GoogleAPIExample";
 import DymoAPIExample from "./components/DymoAPIExample";
+import AxiosAPIExample from "./components/AxiosAPIExample";
 
 
 class Demo extends React.Component {
@@ -29,6 +30,13 @@ class Demo extends React.Component {
                     </button>
                     <br/>
                     {this.state.show === "dymo_example" && <DymoAPIExample/>}
+                </div>
+                <div style={{display: "inline-table", width: "30%"}}>
+                    <button onClick={() => this.setState({show: "axios_example"})}>
+                        Mount AXIOS API component example
+                    </button>
+                    <br/>
+                    {this.state.show === "axios_example" && <AxiosAPIExample/>}
                 </div>
             </div>
         );
