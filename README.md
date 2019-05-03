@@ -1,5 +1,8 @@
 # react-hooks-toolbox
 
+[![NPM version][npm-image]][npm-url]
+[![npm download][download-image]][download-url]
+
 Collection of Hooks.
 
 ## Install
@@ -194,3 +197,7 @@ const DymoLabelPreview = () => {
   }
 };
 ```
+[npm-image]: https://img.shields.io/npm/v/react-hooks-toolbox.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/react-hooks-toolbox
+[download-image]: https://img.shields.io/npm/dm/react-hooks-toolbox.svg?style=flat-square
+[download-url]: https://npmjs.org/package/react-hooks-toolbox
