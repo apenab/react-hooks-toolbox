@@ -19,12 +19,12 @@ yarn add react-hooks-toolbox
 ```
 
 ## Run samples
+
 - Clone repository
 - `yarn install` or `npm install`
 - Install [json-server](https://www.npmjs.com/package/json-server) `npm i json-server` or `yarn add global json-server`(Get a full fake REST API with zero coding in less than 30 seconds (seriously))
 - `yarn run run:server`
 - `yarn run start`
-
 
 ## API
 
@@ -77,9 +77,10 @@ const ListPosts = () => {
     ....
   });
 
-  ...... 
+  ......
 };
 ```
+
 ### `useAxiosPost()`
 
 `POST` request
@@ -103,7 +104,6 @@ Object containing:
 - `response: object`:` Request response.
 - `error: object`: Request error.
 - `dispatchFetch: function`: Dispatched request if `controlledFetch` property is `true`.
-
 
 ## Google-API
 
@@ -132,13 +132,12 @@ Return the status of DYMO Label Web Service
 
 #### Arguments
 
-`port: number`: The port of running DYMO Label Web Service.
+`port: number`:(OPTIONAL) The port of running DYMO Label Web Service.
 
 #### Returns
 
 Array containing:
 
-- `message: string`: `""` The errors thrown.
 - `status: string`: `"init"`: `"init" | "loading" | "success" | "error"` Status of DYMO Label Web Service.
 
 ### `useDymoFetchPrinters()`
@@ -163,16 +162,17 @@ Render Label
 
 #### Arguments
 
-`labelXML: xml file`: XML file.
 `statusDymoService: string`: The status of DYMO Label Web Service.
-`port: number`: The port of running DYMO Label Web Service.
+`labelXML: xml file`: XML file.
+`port: number`:(OPTIONAL) The port of running DYMO Label Web Service.
 
 #### Returns
 
-Array containing:
+Object containing:
 
 - `label`:
-- `status: string`: `"init"`: `"init" | "loading" | "success" | "error"` Status of render label.
+- `statusOpenLabel: string`: `"init"`: `"init" | "loading" | "success" | "error"` Status of render label.
+- `errorOpenLabel:`
 
 #### Example
 
@@ -180,8 +180,11 @@ Array containing:
 import { useDymoOpenLabel, useDymoCheckService } from "react-hooks-toolbox";
 
 const DymoLabelPreview = () => {
-  const [msg, statusDymoService] = useDymoCheckService();
-  const [label, status] = useDymoOpenLabel(statusDymoService, xmlFile);
+  const statusDymoService = useDymoCheckService();
+  const { label, statusOpenLabel, errorOpenLabel } = useDymoOpenLabel(
+    statusDymoService,
+    xmlFile
+  );
 
   if (label) {
     return (
