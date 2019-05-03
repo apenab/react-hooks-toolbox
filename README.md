@@ -113,7 +113,7 @@ This Hook is designed for load https://apis.google.com/js/api.js, initialize Goo
 
 #### Arguments
 
-`initConf: object`: object for Initialize the [gapi.client.init(args)](https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiclientinitargs).
+- `initConf: object`: object for Initialize the [gapi.client.init(args)](https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiclientinitargs).
 
 #### Returns
 
@@ -132,11 +132,9 @@ Return the status of DYMO Label Web Service
 
 #### Arguments
 
-`port: number`:(OPTIONAL) The port of running DYMO Label Web Service.
+- `port: number`:(OPTIONAL) The port of running DYMO Label Web Service.
 
 #### Returns
-
-Array containing:
 
 - `status: string`: `"init"`: `"init" | "loading" | "success" | "error"` Status of DYMO Label Web Service.
 
@@ -146,15 +144,16 @@ Returns the available DYMO Labelwriter Printer
 
 #### Arguments
 
-`port: number`: The port of running DYMO Label Web Service.
-`statusDymoService: string`: The status of DYMO Label Web Service.
+- `statusDymoService: string`: The status of DYMO Label Web Service.
+- `modelPrinter: string`: The model of label writer printer.
+- `port: number`: The port of running DYMO Label Web Service.
 
 #### Returns
 
-Array containing:
+Object containing:
 
-- `printers: array`: `[]` The list of available DYMO Labelwriter Printer.
-- `status: string`: `"init"`: `"init" | "loading" | "success" | "error"` Status of loading printers.
+- `statusDymoFetchPrinters: string`: `"init"`: `"init" | "loading" | "success" | "error"` Status of loading printers.
+- `printers: array`: `[]` The list of available DYMO Printer.
 
 ### `useDymoOpenLabel()`
 
@@ -162,17 +161,17 @@ Render Label
 
 #### Arguments
 
-`statusDymoService: string`: The status of DYMO Label Web Service.
-`labelXML: xml file`: XML file.
-`port: number`:(OPTIONAL) The port of running DYMO Label Web Service.
+- `statusDymoService: string`: The status of DYMO Label Web Service.
+- `labelXML: xml file`: XML file.
+- `port: number`:(OPTIONAL) The port of running DYMO Label Web Service.
 
 #### Returns
 
 Object containing:
 
-- `label`:
+- `label`
 - `statusOpenLabel: string`: `"init"`: `"init" | "loading" | "success" | "error"` Status of render label.
-- `errorOpenLabel:`
+- `errorOpenLabel`
 
 #### Example
 
