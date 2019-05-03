@@ -8,9 +8,6 @@ const config = require("../../../api_google.config.json");
 export default function GoogleAPIExample() {
     const gapiObject = useGoogleApiInit(config);
     const {gapiStatus, signed} = gapiObject;
-    useEffect(() => {
-        console.log(gapiObject);
-    });
     function handleSignIn() {
         window["gapi"].auth2.getAuthInstance().signIn();
     }
