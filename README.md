@@ -18,9 +18,20 @@ npm i react-hooks-toolbox
 yarn add react-hooks-toolbox
 ```
 
+## Run samples
+- Clone repository
+- `yarn install` or `npm install`
+- Install [json-server](https://www.npmjs.com/package/json-server) `npm i json-server` or `yarn add global json-server`(Get a full fake REST API with zero coding in less than 30 seconds (seriously))
+- `yarn run run:server`
+- `yarn run start`
+
+
 ## API
 
 - [Hooks](#hooks)
+  - [Axios-API](#axios-api)
+    - [`useAxiosGet()`](#useaxiosget)
+    - [`useAxiosPost()`](#useaxiospost)
   - [Google-API](#google-api)
     - [`useGoogleApiInit()`](#usegoogleapiinit)
   - [DYMO-API](#dymo-api)
@@ -29,6 +40,70 @@ yarn add react-hooks-toolbox
     - [`useDymoOpenLabel()`](#usedymoopenlabel)
 
 ## Hooks
+
+## [Axios-API](https://github.com/axios/axios)
+
+### `useAxiosGet()`
+
+`GET` request
+
+#### Arguments
+
+- `url: string`: The request URL.
+- `axiosInsance: axios`: (OPTIONAL) The custom axios instance.
+- `options: object`: (OPTIONAL) Config option of [axios](https://github.com/axios/axios).
+- `delay: number`: (OPTIONAL) Request delay.
+- `successCb: function`: (OPTIONAL) Callback triggered when the request was successfully executed.
+- `failedCb: function`: (OPTIONAL) Callback triggered when the request returned an error.
+- `onlyDispathcIf: bool`: (OPTIONAL) Only the request is dispatched when this property is `true`
+- `controlledFetch: bool`: (OPTIONAL) This property causes the request to run only when the `dispatchFetch` function is called
+
+#### Returns
+
+Object containing:
+
+- `status: string`: Request status.
+- `response: object`:` Request response.
+- `error: object`: Request error.
+- `dispatchFetch: function`: Dispatched request if `controlledFetch` property is `true`.
+
+#### Example
+
+```js
+import { useAxiosGet } from "react-hooks-toolbox";
+
+const ListPosts = () => {
+  const { status, response } = useAxiosGet({
+    ....
+  });
+
+  ...... 
+};
+```
+### `useAxiosPost()`
+
+`POST` request
+
+#### Arguments
+
+- `url: string`: The request URL.
+- `axiosInsance: axios`: (OPTIONAL) The custom axios instance.
+- `options: object`: (OPTIONAL) Config option of [axios](https://github.com/axios/axios).
+- `delay: number`: (OPTIONAL) Request delay.
+- `successCb: function`: (OPTIONAL) Callback triggered when the request was successfully executed.
+- `failedCb: function`: (OPTIONAL) Callback triggered when the request returned an error.
+- `onlyDispathcIf: bool`: (OPTIONAL) Only the request is dispatched when this property is `true`
+- `controlledFetch: bool`: (OPTIONAL) This property causes the request to run only when the `dispatchFetch` function is called
+
+#### Returns
+
+Object containing:
+
+- `status: string`: Request status.
+- `response: object`:` Request response.
+- `error: object`: Request error.
+- `dispatchFetch: function`: Dispatched request if `controlledFetch` property is `true`.
+
 
 ## Google-API
 
