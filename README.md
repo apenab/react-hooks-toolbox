@@ -108,6 +108,39 @@ Object containing:
 - `error: object`: Request error.
 - `dispatchFetch: function`: Dispatched request if `controlledFetch` property is `true`.
 
+#### Example
+
+```js
+import { useAxiosPost } from "react-hooks-toolbox";
+
+const AddPost = () => {
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+
+  const { status, response, dispatchFetch } = useAxiosPost({
+    url: "http://localhost:3001/posts",
+    controlledFetch: true,
+    options: {
+      data: {
+        title: title,
+        author: author
+      }
+    },
+    successCb: response => {
+      console.log(response);
+    }
+  });
+
+  return (
+    <div>
+      <input value={title} onChange={e => setTitle(e.target.value)} />
+      <input value={author} onChange={e => setAuthor(e.target.value)} />
+      <button onClick={() => dispatchFetch()}>Add Post</button>
+    </div>
+  );
+};
+```
+
 ## Google-API
 
 ### `useGoogleApiInit()`
@@ -197,6 +230,7 @@ const DymoLabelPreview = () => {
   }
 };
 ```
+
 [npm-image]: https://img.shields.io/npm/v/react-hooks-toolbox.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/react-hooks-toolbox
 [download-image]: https://img.shields.io/npm/dm/react-hooks-toolbox.svg?style=flat-square
