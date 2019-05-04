@@ -25,7 +25,7 @@ yarn add react-hooks-toolbox
 
 - Clone repository
 - `yarn install` or `npm install`
-- Install [json-server](https://www.npmjs.com/package/json-server) `npm i json-server` or `yarn add global json-server`(Get a full fake REST API with zero coding in less than 30 seconds (seriously))
+- (This is only necessary for the examples with Axios) Install [json-server](https://www.npmjs.com/package/json-server) `npm i json-server` or `yarn add global json-server`(Get a full fake REST API with zero coding in less than 30 seconds (seriously))
 - `yarn run run:server`
 - `yarn run start`
 
@@ -66,7 +66,7 @@ yarn add react-hooks-toolbox
 Object containing:
 
 - `status: string`: Request status.
-- `response: object`:` Request response.
+- `response: object`: Request response.
 - `error: object`: Request error.
 - `dispatchFetch: function`: Dispatched request if `controlledFetch` property is `true`.
 
