@@ -12,7 +12,6 @@ export default function DymoAPIExample() {
     const {statusDymoFetchPrinters, printers} = useDymoFetchPrinters(statusDymoService);
 
     const xmlMemo = useMemo(() => generateXmlExample(name, address), [address, name]);
-
     return (
         <div>
             {statusDymoService !== "success" ? (
@@ -22,7 +21,10 @@ export default function DymoAPIExample() {
                     <h3 style={{color: "green"}}>DYMO service is running in your PC.</h3>
                     <input value={name} title="Name" onChange={e => setName(e.target.value)}/>
                     <br/>
+                    <br/>
                     <input value={address} title="Address" onChange={e => setAddress(e.target.value)}/>
+                    <br/>
+                    <br/>
                 </React.Fragment>
             )}
             <DymoLabelPreview

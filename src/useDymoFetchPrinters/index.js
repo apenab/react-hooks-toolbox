@@ -6,6 +6,7 @@ import {useAxiosGet} from "../useAxiosGet";
 
 export function useDymoFetchPrinters(statusDymoService, modelPrinter = "LabelWriterPrinter", port = 41951) {
     const [printers, setPrinters] = useState([]);
+    const [innerStatus, setInnerStatus] = useState("init");
     const {status, response} = useAxiosGet({
         url: getDymoUrl("GetPrinters", port),
         axiosInstance: dymoAxios,
@@ -13,10 +14,14 @@ export function useDymoFetchPrinters(statusDymoService, modelPrinter = "LabelWri
     });
 
     useEffect(() => {
-        if (response) {
+        if (status === "success" && response) {
             setPrinters(getDymoPrintersFromXml(response, modelPrinter));
+            setInnerStatus(status);
         }
-    }, [modelPrinter, response]);
+        else {
+            setInnerStatus(status);
+        }
+    }, [modelPrinter, response, status]);
 
-    return {statusDymoFetchPrinters: status, printers: printers};
+    return {statusDymoFetchPrinters: innerStatus, printers: printers};
 }
