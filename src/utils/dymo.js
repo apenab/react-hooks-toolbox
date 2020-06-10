@@ -3,7 +3,7 @@ import XMLParser from "react-xml-parser";
 
 
 export function getDymoUrl(typeDymoFunction, port = 41951) {
-    return `https://127.0.0.1:${port}/DYMO/DLS/Printing/${typeDymoFunction}`;
+    return `https://localhost:${port}/DYMO/DLS/Printing/${typeDymoFunction}`;
 }
 
 export const dymoAxios = axios.create({
