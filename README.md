@@ -3,6 +3,8 @@
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
 
+# ⚠️ If you are going to use any Dymo functionality please use the following package [react-dymo-hooks](https://github.com/apenab/react-dymo-hooks)
+
 Collection of Hooks.
 
 ## Install
@@ -159,6 +161,8 @@ Object containing:
 - `gapiError: object | string`: `null` The errors thrown.
 - `signed: boolean`: `false` Sign status.
 - `userProfile: object`: `null` User's basic profile information and token.
+
+# ⚠️ If you are going to use any Dymo functionality please use the following package [react-dymo-hooks](https://github.com/apenab/react-dymo-hooks)
 
 ## DYMO-API
 
